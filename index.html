@@ -48,6 +48,13 @@
                 </div>
                 <div class="control-group">
                     <label class="control-label">
+                        Trees per Acre (Dense Plantation)
+                        <span class="control-value" id="treesVal">3000</span>
+                    </label>
+                    <input type="range" id="treesPerAcre" min="500" max="5000" value="3000" step="100">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
                         PM2.5 Level (µg/m³)
                         <span class="control-value" id="pm25Val">150</span>
                     </label>
@@ -104,7 +111,9 @@
             <div class="chart-container">
                 <div class="chart-title">📉 Environmental Metrics Comparison (Before vs After)</div>
                 <!-- Replaced old custom bars with a canvas for Chart.js -->
-                <canvas id="impactChart"></canvas>
+                <div style="position: relative; height: 350px; width: 100%;">
+                    <canvas id="impactChart"></canvas>
+                </div>
             </div>
 
             <!-- Temperature Heatmap -->

@@ -6,6 +6,7 @@ const sliders = {
     cityArea: 'areaVal',
     greenCover: 'greenVal',
     avgTemp: 'tempVal',
+    treesPerAcre: 'treesVal',
     pm25: 'pm25Val',
     popDensity: 'popVal'
 };
@@ -111,6 +112,7 @@ async function runSimulation() {
     const cityArea = parseFloat(document.getElementById('cityArea').value);
     const greenCover = parseFloat(document.getElementById('greenCover').value) / 100;
     const avgTemp = parseFloat(document.getElementById('avgTemp').value);
+    const treesPerAcre = parseFloat(document.getElementById('treesPerAcre').value);
     const pm25 = parseFloat(document.getElementById('pm25').value);
     const popDensity = parseFloat(document.getElementById('popDensity').value);
 
@@ -130,8 +132,8 @@ async function runSimulation() {
     const totalHectares = totalAcres * 0.4047;
     const totalSanctuaryKm2 = totalHectares / 100;
 
-    // Trees planted (3000 saplings per 2-acre sanctuary as per manifesto)
-    const treesPerSanctuary = 3000;
+    // Trees planted (based on slider selection)
+    const treesPerSanctuary = treesPerAcre;
     const totalTrees = numSanctuaries * treesPerSanctuary;
 
     // ----- OXYGEN -----

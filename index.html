@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-Acre Micro-Sanctuary Environmental Impact Simulation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-badge">Environmental Simulation Engine</div>
+            <h1>2-Acre Micro-Sanctuary<br>Impact Simulator</h1>
+            <p class="subtitle">
+                Modeling the atmospheric, thermal, and ecological effects of deploying densely-planted 
+                micro-sanctuaries every 2 km across India's populated zones
+            </p>
+        </header>
+
+        <!-- Controls -->
+        <div class="controls-panel">
+            <div class="controls-title">⚙️ Simulation Parameters</div>
+            <div class="controls-grid">
+                <div class="control-group">
+                    <label class="control-label">
+                        City Area (km²)
+                        <span class="control-value" id="areaVal">200</span>
+                    </label>
+                    <input type="range" id="cityArea" min="50" max="1500" value="200" step="10">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        Current Green Cover (%)
+                        <span class="control-value" id="greenVal">12</span>
+                    </label>
+                    <input type="range" id="greenCover" min="3" max="35" value="12" step="1">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        Avg. Summer Temperature (°C)
+                        <span class="control-value" id="tempVal">42</span>
+                    </label>
+                    <input type="range" id="avgTemp" min="35" max="50" value="42" step="0.5">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        Trees per Acre (Dense Plantation)
+                        <span class="control-value" id="treesVal">400</span>
+                    </label>
+                    <input type="range" id="treesPerAcre" min="200" max="800" value="400" step="10">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        PM2.5 Level (µg/m³)
+                        <span class="control-value" id="pm25Val">150</span>
+                    </label>
+                    <input type="range" id="pm25" min="30" max="400" value="150" step="5">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        Population Density (per km²)
+                        <span class="control-value" id="popVal">8000</span>
+                    </label>
+                    <input type="range" id="popDensity" min="1000" max="30000" value="8000" step="500">
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn run-btn" id="runBtn" onclick="runSimulation()">
+                    ▶ Run Simulation
+                </button>
+                <button class="btn secondary-btn" id="shareBtn" style="display: none;" onclick="shareResults()">
+                    🔗 Copy Share Link
+                </button>
+            </div>
+            
+            <div class="sim-progress" id="progressContainer" style="display:none;">
+                <div class="sim-progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
+        <!-- Results (hidden until simulation runs) -->
+        <div id="results" class="results-section hidden">
+
+            <!-- Key Impact Numbers -->
+            <div class="section-title">
+                <span class="icon" style="background: var(--accent-green-glow); color: var(--accent-green);">📊</span>
+                Net Impact Summary
+            </div>
+            <div class="impact-grid" id="impactGrid"></div>
+
+            <!-- Before vs After Comparison -->
+            <div class="section-title">
+                <span class="icon" style="background: var(--accent-blue-glow); color: var(--accent-blue);">🔬</span>
+                Detailed Before vs After Analysis
+            </div>
+            <div class="comparison-grid" id="comparisonGrid"></div>
+
+            <!-- Gas Composition Rings -->
+            <div class="section-title">
+                <span class="icon" style="background: var(--accent-purple-glow); color: var(--accent-purple);">🌬️</span>
+                Local Atmospheric Gas Composition (Near-Surface)
+            </div>
+            <div class="gas-rings" id="gasRings"></div>
+
+            <!-- Chart.js Visualization -->
+            <div class="chart-container">
+                <div class="chart-title">📉 Environmental Metrics Comparison (Before vs After)</div>
+                <!-- Replaced old custom bars with a canvas for Chart.js -->
+                <canvas id="impactChart"></canvas>
+            </div>
+
+            <!-- Temperature Heatmap -->
+            <div class="heatmap-container">
+                <div class="chart-title">🌡️ Surface Temperature Distribution (Simulated Grid)</div>
+                <div class="heatmap-grid" id="heatmapGrid"></div>
+            </div>
+
+            <!-- Verdict -->
+            <div class="verdict-card" id="verdictCard"></div>
+
+            <!-- Methodology -->
+            <details class="methodology">
+                <summary>📐 Simulation Methodology & Data Sources</summary>
+                <div class="methodology-content">
+                    <ul>
+                        <li><strong>Oxygen Production:</strong> Based on USDA Forest Service estimates — one mature tree produces ~100 kg O₂/year. Dense plantations (Miyawaki method) can have 400-800 trees/acre.</li>
+                        <li><strong>CO₂ Absorption:</strong> Average mature tree absorbs ~22 kg CO₂/year (EPA estimates). Dense canopy trees absorb more. We use a density-weighted model.</li>
+                        <li><strong>Temperature Reduction:</strong> Research from IIT Bombay and IISC Bangalore shows dense urban tree cover reduces local temperatures by 2-8°C. We model based on canopy cover ratio within a 2km radius.</li>
+                        <li><strong>PM2.5 Filtration:</strong> Dense tree canopies trap 7-24% of particulate matter in a 500m radius (Nature Sustainability, 2022). We use a conservative 15% reduction per micro-sanctuary zone.</li>
+                        <li><strong>Evapotranspiration Cooling:</strong> Each large tree transpires ~400 liters/day in summer, producing cooling equivalent to 2 room ACs (US EPA). Scaled by tree density.</li>
+                        <li><strong>Gas Composition:</strong> Atmospheric baselines from NOAA. Local deviations modeled using urban pollution gradients and photosynthesis rates per canopy area.</li>
+                        <li><strong>Micro-Sanctuary Count:</strong> Calculated as city area ÷ (π × 2²) = area ÷ 12.57 km² per sanctuary zone (non-overlapping circles in a 2km radius grid).</li>
+                        <li><strong>Note:</strong> This is an indicative model. Real-world outcomes depend on tree species, soil, water table, existing infrastructure, and maintenance. Numbers represent scientifically-grounded estimates, not precise predictions.</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <!-- Script tags placed at the end for faster page load -->
+    <script src="script.js"></script>
+</body>
+</html>

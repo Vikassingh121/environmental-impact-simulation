@@ -473,7 +473,7 @@ async function runSimulation() {
                 const b = Math.round((1 - normalized) * 180);
                 
                 cell.style.background = `rgb(${r}, ${g}, ${b})`;
-                cell.title = `${temp.toFixed(1)}°C`;
+                cell.setAttribute('data-temp', `${temp.toFixed(1)}°C`);
                 grid.appendChild(cell);
             }
         }

@@ -573,6 +573,35 @@ svg.ring-svg {
     z-index: 2;
 }
 
+/* Tooltip for heatmap */
+.heat-cell::after {
+    content: attr(data-temp);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    pointer-events: none;
+    opacity: 0;
+    white-space: nowrap;
+    border: 1px solid var(--accent-cyan);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    z-index: 10;
+}
+
+.heat-cell:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) scale(0.769); /* Counteract the 1.3 scale of the parent cell to keep text normal size */
+    bottom: 110%;
+}
+
 .heat-scale {
     display: flex;
     justify-content: space-between;

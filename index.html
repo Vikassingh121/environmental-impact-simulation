@@ -48,13 +48,6 @@
                 </div>
                 <div class="control-group">
                     <label class="control-label">
-                        Trees per Acre (Dense Plantation)
-                        <span class="control-value" id="treesVal">400</span>
-                    </label>
-                    <input type="range" id="treesPerAcre" min="200" max="800" value="400" step="10">
-                </div>
-                <div class="control-group">
-                    <label class="control-label">
                         PM2.5 Level (µg/m³)
                         <span class="control-value" id="pm25Val">150</span>
                     </label>
@@ -128,14 +121,14 @@
                 <summary>📐 Simulation Methodology & Data Sources</summary>
                 <div class="methodology-content">
                     <ul>
-                        <li><strong>Oxygen Production:</strong> Based on USDA Forest Service estimates — one mature tree produces ~100 kg O₂/year. Dense plantations (Miyawaki method) can have 400-800 trees/acre.</li>
-                        <li><strong>CO₂ Absorption:</strong> Average mature tree absorbs ~22 kg CO₂/year (EPA estimates). Dense canopy trees absorb more. We use a density-weighted model.</li>
-                        <li><strong>Temperature Reduction:</strong> Research from IIT Bombay and IISC Bangalore shows dense urban tree cover reduces local temperatures by 2-8°C. We model based on canopy cover ratio within a 2km radius.</li>
+                        <li><strong>Zoning Strategy:</strong> Each 2-acre (8,094 sq m) micro-sanctuary is strictly zoned: ~1 acre for dense Miyawaki forest (shade/oxygen), ~0.5 acre for open grazing meadow, ~8% for a deep water body, and the rest for animal resting paths.</li>
+                        <li><strong>Miyawaki Forest Density:</strong> 3,000 native saplings planted per acre of forest zone, creating a multi-layered canopy that matures in 3-5 years.</li>
+                        <li><strong>Temperature Reduction:</strong> Based on IIT Kanpur research, mature Miyawaki forests reduce local temperatures by a minimum of 2°C and up to 8°C depending on density.</li>
                         <li><strong>PM2.5 Filtration:</strong> Dense tree canopies trap 7-24% of particulate matter in a 500m radius (Nature Sustainability, 2022). We use a conservative 15% reduction per micro-sanctuary zone.</li>
                         <li><strong>Evapotranspiration Cooling:</strong> Each large tree transpires ~400 liters/day in summer, producing cooling equivalent to 2 room ACs (US EPA). Scaled by tree density.</li>
                         <li><strong>Gas Composition:</strong> Atmospheric baselines from NOAA. Local deviations modeled using urban pollution gradients and photosynthesis rates per canopy area.</li>
                         <li><strong>Micro-Sanctuary Count:</strong> Calculated as city area ÷ (π × 2²) = area ÷ 12.57 km² per sanctuary zone (non-overlapping circles in a 2km radius grid).</li>
-                        <li><strong>Note:</strong> This is an indicative model. Real-world outcomes depend on tree species, soil, water table, existing infrastructure, and maintenance. Numbers represent scientifically-grounded estimates, not precise predictions.</li>
+                        <li><strong>Note:</strong> This is an indicative model based on <em>The Accountability Manifesto v2</em>. Numbers represent scientifically-grounded estimates to demonstrate the massive potential of the Coexistence Mandate at scale.</li>
                     </ul>
                 </div>
             </details>

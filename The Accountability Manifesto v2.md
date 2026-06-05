@@ -2,6 +2,8 @@
 
 ### A Policy Proposal for India's 2,64,000 Villages and 8,000 Towns
 
+**Try the Interactive Simulation:** [2-Acre Micro-Sanctuary Environmental Impact Simulation](https://vikassingh121.github.io/environmental-impact-simulation/)
+
 ---
 
 > *"I don't want to hurt the cow. But if I don't chase it away, my family doesn't eat tonight."*
